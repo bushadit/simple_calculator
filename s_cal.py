@@ -8,7 +8,7 @@ root.title('Simple Calculator')
 calc = Entry(root, width=40, borderwidth=5)
 calc.grid(row=0, column=0, columnspan=3, padx=10, pady=10)
 
-# Defining buttons (numbers and operators)
+# Defining button (numbers and operators)
 
 
 def button_click(number):
@@ -23,9 +23,52 @@ def button_clear():
 
 def button_addi():
     first_number = calc.get()
+    global math
     global f_num
-    f_num = int(first_number)
+    math = 'addition'
+    f_num = float(first_number)
     calc.delete(0, END)
+
+
+def button_sub():
+    first_number = calc.get()
+    global math
+    global f_num
+    math = 'subtraction'
+    f_num = float(first_number)
+    calc.delete(0, END)
+
+
+def button_mult():
+    first_number = calc.get()
+    global math
+    global f_num
+    math = 'multiplication'
+    f_num = float(first_number)
+    calc.delete(0, END)
+
+
+def button_div():
+    first_number = calc.get()
+    global math
+    global f_num
+    math = 'division'
+    f_num = float(first_number)
+    calc.delete(0, END)
+
+
+def button_equal():
+    second_number = calc.get()
+    calc.delete(0, END)
+
+    if math == 'addition':
+        calc.insert(0, f_num + int(second_number))
+    if math == 'subtraction':
+        calc.insert(0, f_num - int(second_number))
+    if math == 'multiplication':
+        calc.insert(0, f_num * int(second_number))
+    if math == 'division':
+        calc.insert(0, f_num / int(second_number))
 
 
 button_1 = Button(root, text='1', padx=40, pady=20,
@@ -54,7 +97,13 @@ button_clear = Button(root, text='Clear', padx=80,
 button_addi = Button(root, text='+', padx=40, pady=20,
                      command=button_addi)
 button_equal = Button(root, text='=', padx=80, pady=20,
-                      command=lambda: button_click())
+                      command=button_equal)
+button_sub = Button(root, text='-', padx=40, pady=20,
+                    command=button_sub)
+button_mult = Button(root, text='*', padx=40, pady=20,
+                     command=button_mult)
+button_div = Button(root, text='/', padx=40, pady=20,
+                    command=button_div)
 
 # Putting the buttons on screen (grid)
 
@@ -75,5 +124,8 @@ button_0.grid(row=4, column=0, sticky=EW)
 button_clear.grid(row=4, column=1, columnspan=2, sticky=EW)
 button_addi.grid(row=5, column=0, sticky=EW)
 button_equal.grid(row=5, column=1, columnspan=2, sticky=EW)
+button_sub.grid(row=6, column=0, sticky=EW)
+button_mult.grid(row=6, column=1, sticky=EW)
+button_div.grid(row=6, column=2, sticky=EW)
 
 root.mainloop()
