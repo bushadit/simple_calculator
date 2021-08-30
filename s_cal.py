@@ -2,6 +2,8 @@ from tkinter import *
 
 root = Tk()
 root.title('Simple Calculator')
+root.geometry('292x431')
+root.resizable(0, 0)
 
 # Entry (calculus)
 
